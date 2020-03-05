@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">25sp</dimen>
+    <dimen name="layout_marginBottom">25sp</dimen>
+    <dimen name="walk_through_indicator_area_height">25sp</dimen>
+    <dimen name="walk_through_title_margin_bottom">25sp</dimen>
+</resources>
