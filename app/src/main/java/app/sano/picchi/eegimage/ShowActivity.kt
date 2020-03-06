@@ -9,9 +9,13 @@ import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import androidx.core.content.ContextCompat.startActivity
+import app.sano.picchi.eegimage.TutorialActivity.Companion.showForcibly
+import app.sano.picchi.eegimage.TutorialActivity.Companion.showIfNeeded
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_show.*
+import kotlinx.android.synthetic.main.activity_walk_through_fragment.*
 import java.util.*
 
 class ShowActivity : AppCompatActivity() {
@@ -21,11 +25,13 @@ class ShowActivity : AppCompatActivity() {
     lateinit var bitmap: Bitmap
 
     var second = 15
+    var count = 0
+
     var timer :CountDownTimer = object :CountDownTimer(15000,1000){
+
         override fun onFinish(){
             second = 15
-            val intent = Intent(this@ShowActivity,ResultActivity::class.java)
-            startActivity(intent)
+            repertIfNeeded()
         }
 
         //1秒ごとに呼ばれる
@@ -37,6 +43,31 @@ class ShowActivity : AppCompatActivity() {
 
     }
 
+
+    fun repertIfNeeded(){
+        if (count <= 3) {
+            //写真を変える処理をかく
+            timer.cancel()
+            timer.start()
+
+            Log.d("Test",count.toString())
+
+            count += 1
+
+        }else if (count == 4){
+            val intent = Intent(this,ResultActivity::class.java)
+            startActivity(intent)
+            timer.cancel()
+
+        }
+
+
+
+
+
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         /*//memoから画像をとってくる
@@ -45,7 +76,6 @@ class ShowActivity : AppCompatActivity() {
             "updateDate",
             this.intent.getStringExtra("updateDate")
         ).findFirst()*/
-
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show)
@@ -56,15 +86,7 @@ class ShowActivity : AppCompatActivity() {
         //showImage.setImageBitmap(bitmap)
 
         //チュートリアルの表示
-        //showIfNeeded(activity,savedInstanceState)
-
-//        for (i in 1..2){
-//            if (second == 0){
-//                timer.start()
-//                imageView.setImageResource(R.drawable.i2)
-//            }
-//        }
-
+        showForcibly(this)
 
 
 
@@ -74,10 +96,7 @@ class ShowActivity : AppCompatActivity() {
 
 
 
-    fun move(view: View){
-        intent = Intent(this,ResultActivity::class.java)
-        startActivity(intent)
-    }
+
 
     override fun onDestroy() {
         super.onDestroy()

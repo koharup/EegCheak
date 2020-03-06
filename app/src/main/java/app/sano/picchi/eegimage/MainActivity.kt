@@ -14,6 +14,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //最初のウォーク周りレイアウトのviewpagerのエラー
-        /*scale = resources.displayMetrics.density
+        scale = resources.displayMetrics.density
 
         viewPager = findViewById(R.id.viewPager)
         viewPagerAdapter = CustomAdapter(supportFragmentManager)
@@ -93,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             if (i == 0) {
                 view.background = getDrawable(R.drawable.i4)
                 val layoutParams = LinearLayout.LayoutParams(indicatorWidth, indicatorHeight)
-                view.layoutParams = layoutParams
+                view.layoutParams = layoutParams as ViewGroup.LayoutParams?
             } else {
                 view.background = getDrawable(R.drawable.i5)
                 val layoutParams = LinearLayout.LayoutParams(indicatorWidth, indicatorHeight)
@@ -102,7 +103,7 @@ class MainActivity : AppCompatActivity() {
             }
             indicatorArea.addView(view)
             indicatorViewList.add(view)
-        }*/
+        }
     }
 
     fun start(view: View) {
