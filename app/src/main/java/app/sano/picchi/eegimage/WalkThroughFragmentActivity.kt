@@ -36,33 +36,27 @@ class WalkThroughFragmentActivity : Fragment() {
 
         val linearLayout: FrameLayout = argView.findViewById(R.id.frame_layout)
         val imageView: ImageView = argView.findViewById(R.id.imageView)
-        val textView: TextView = argView.findViewById(R.id.title)
 
         when (walkThroughType) {
             WalkThroughType.First -> {
-                linearLayout.setBackgroundResource(R.color.colorAccent)
+                linearLayout.setBackgroundResource(R.color.colorBack)
                 imageView.setImageResource(R.drawable.i1)
-                textView.text = getText(R.string.title1)
             }
             WalkThroughType.Second -> {
-                linearLayout.setBackgroundResource(R.color.colorPrimary)
+                linearLayout.setBackgroundResource(R.color.colorBack)
                 imageView.setImageResource(R.drawable.i2)
-                textView.text = getText(R.string.title2)
             }
             WalkThroughType.Third -> {
-                linearLayout.setBackgroundResource(R.color.colorPrimaryDark)
+                linearLayout.setBackgroundResource(R.color.colorBack)
                 imageView.setImageResource(R.drawable.i3)
-                textView.text = getText(R.string.title3)
             }
             WalkThroughType.Fourth -> {
-                linearLayout.setBackgroundResource(R.color.colorPrimaryDark)
+                linearLayout.setBackgroundResource(R.color.colorBack)
                 imageView.setImageResource(R.drawable.i4)
-                textView.text = getText(R.string.title3)
             }
             WalkThroughType.Fifth -> {
-                linearLayout.setBackgroundResource(R.color.colorPrimaryDark)
+                linearLayout.setBackgroundResource(R.color.colorBack)
                 imageView.setImageResource(R.drawable.i5)
-                textView.text = getText(R.string.title3)
             }
         }
     }

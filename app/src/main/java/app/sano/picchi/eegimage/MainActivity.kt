@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //最初のウォーク周りレイアウトのviewpagerのエラー
+
         scale = resources.displayMetrics.density
 
         viewPager = findViewById(R.id.viewPager)
@@ -68,13 +68,13 @@ class MainActivity : AppCompatActivity() {
                     if (i == position)
                         indicatorViewList[i].background = ResourcesCompat.getDrawable(
                             resources,
-                            R.drawable.i4,
+                            R.drawable.icon_radio,
                             null
                         )
                     else
                         indicatorViewList[i].background = ResourcesCompat.getDrawable(
                             resources,
-                            R.drawable.i5,
+                            R.drawable.icon_radio_nill,
                             null
                         )
 
@@ -92,11 +92,11 @@ class MainActivity : AppCompatActivity() {
         for (i in 0 until WalkThroughType.values().size) {
             var view = View(this)
             if (i == 0) {
-                view.background = getDrawable(R.drawable.i4)
+                view.background = getDrawable(R.drawable.icon_radio)
                 val layoutParams = LinearLayout.LayoutParams(indicatorWidth, indicatorHeight)
                 view.layoutParams = layoutParams as ViewGroup.LayoutParams?
             } else {
-                view.background = getDrawable(R.drawable.i5)
+                view.background = getDrawable(R.drawable.icon_radio_nill)
                 val layoutParams = LinearLayout.LayoutParams(indicatorWidth, indicatorHeight)
                 layoutParams.marginStart = indicatorMarginStart
                 view.layoutParams = layoutParams
@@ -110,12 +110,7 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this,ImageVerificationActivity::class.java)
         startActivity(intent)
-        //cameraTask()
-//        val intent: Intent =
-//            Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-//        intent.type = "image/*"
-//        startActivityForResult(intent, REQUEST_CODE_PHOTO)
-//        Log.d("camera","camera")
+
     }
 
 

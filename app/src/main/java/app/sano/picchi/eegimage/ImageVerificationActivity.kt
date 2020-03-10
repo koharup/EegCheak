@@ -17,8 +17,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_image_verification.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_show.*
 import java.io.ByteArrayOutputStream
 import java.io.File
+
+val uriList = mutableListOf<Uri>()
 
 class ImageVerificationActivity : AppCompatActivity() {
 
@@ -37,6 +40,15 @@ class ImageVerificationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_verification)
+
+        Toast.makeText(this, "写真を5枚選択してください", Toast.LENGTH_LONG).show();
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+        intent.action = Intent.ACTION_PICK
+        this.startActivityForResult(Intent.createChooser(intent, "Choose Photo"),
+            REQUEST_CODE_PHOTO)
+
     }
 
     fun start(view: View){
@@ -49,7 +61,31 @@ class ImageVerificationActivity : AppCompatActivity() {
         cameraTask()
     }
 
-    fun alubum(view: View){
+    //onCreateに書いたけどあとでわかるように残しとく
+    //画像を複数選択するときの処理
+    fun albums(view: View){
+        Toast.makeText(this, "写真を5枚選択してください", Toast.LENGTH_LONG).show();
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+        intent.action = Intent.ACTION_PICK
+        this.startActivityForResult(Intent.createChooser(intent, "Choose Photo"),
+            REQUEST_CODE_PHOTO)
+    }
+
+
+    //画像を一枚選択するときの処理(albumと同じ,違う書き方してみただけ)
+    fun album2(view: View){
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        this.startActivityForResult(Intent.createChooser(intent, "Choose Photo"),
+            REQUEST_CODE_PHOTO)
+    }
+
+
+    //画像を一枚選択するときの処理(album２と違う書き方してみただけ)
+    fun album(view: View){
         val intent: Intent =
             Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         intent.type = "image/*"
@@ -64,30 +100,44 @@ class ImageVerificationActivity : AppCompatActivity() {
         return imageByteArray
     }
 
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        //listを作る
-        val fileUris: MutableList<File> = mutableListOf()
 
         Log.d("onActivityresult","onActivityresult")
 
         if (requestCode == MainActivity.REQUEST_CODE_PHOTO && resultCode == Activity.RESULT_OK) {
-            pictureUri = data?.data!!
-
-            //これを5回繰り返したいで、listか何かに入れたい
+            /*pictureUri = data?.data!!
             bitmap = MediaStore.Images.Media.getBitmap(contentResolver, pictureUri)
+            Log.d("test",pictureUri.toString())
+            imageView4.setImageBitmap(bitmap)*/
 
-            //選ばれた写真bitmapをfileurisに保存したい
-            //fileUris.add(bitmap.toString())
-            imageView4.setImageBitmap(bitmap)
+            val itemCount = data?.clipData?.itemCount ?: 0
+            //val uriList = mutableListOf<Uri>()
+            for (i in 0..itemCount - 1) {
+                val uri = data?.clipData?.getItemAt(i)?.uri
+                uri?.let { uriList.add(it) }
+            }
+
+            Log.d("datatest",data.toString())
+
+            Log.d("test",uriList.toString())
+            image1.setImageURI(uriList[0])
+            image2.setImageURI(uriList[1])
+            image3.setImageURI(uriList[2])
+            image4.setImageURI(uriList[3])
+            image5.setImageURI(uriList[4])
+
+
         }
 
+        /*カメラを選んだ時に表示するとこ(今回はカメラ使わないからいらない)
         if (requestCode == MainActivity.REQUEST_CODE_CAMERA && resultCode == Activity.RESULT_OK) {
             bitmap = MediaStore.Images.Media.getBitmap(contentResolver, pictureUri)
             intent = Intent(this,ShowActivity::class.java)
             imageView4.setImageBitmap(bitmap)
-        }
+        }*/
     }
 
 
@@ -96,6 +146,7 @@ class ImageVerificationActivity : AppCompatActivity() {
         requestCode: Int,
         permissions: Array<String>,
         grantResults: IntArray
+
 
     ) {
         if (requestCode == MainActivity.REQUEST_CODE_PERMISSION) {
@@ -182,6 +233,9 @@ class ImageVerificationActivity : AppCompatActivity() {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, pictureUri)
         startActivityForResult(intent, MainActivity.REQUEST_CODE_CAMERA)
     }
+
+
+
 
 
 

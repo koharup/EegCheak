@@ -1,97 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ImageVerificationActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_margin="16sp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="8sp"
+            android:layout_weight="0.3"
+            app:srcCompat="@drawable/icon_photo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.315"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8sp"
+                android:layout_weight="0.5"
+                app:srcCompat="@drawable/icon_photo" />
+
+            <ImageView
+                android:id="@+id/image3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8sp"
+                android:layout_weight="0.5"
+                app:srcCompat="@drawable/icon_photo" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.315"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8sp"
+                android:layout_weight="0.5"
+                app:srcCompat="@drawable/icon_photo" />
+
+            <ImageView
+                android:id="@+id/image5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8sp"
+                android:layout_weight="0.5"
+                app:srcCompat="@drawable/icon_photo" />
+        </LinearLayout>
 
         <Button
-            android:id="@+id/button7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="alubum"
-            android:text="アルバム" />
-
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="camera"
-            android:text="カメラ" />
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="8sp"
+            android:layout_weight="0.07"
+            android:background="@drawable/background_rounded_corners"
+            android:onClick="start"
+            android:text="NEXT"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"
-        android:text="写真を5枚選択" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"
-        app:srcCompat="@drawable/i1" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/i2" />
-
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/i3" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/i4" />
-
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/i5" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"
-        android:onClick="start"
-        android:text="始める" />
-
-</LinearLayout>
+</RelativeLayout>

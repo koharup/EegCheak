@@ -22,7 +22,8 @@
             android:id="@+id/indicator_area"
             android:layout_width="match_parent"
             android:layout_height="32sp"
-            android:layout_gravity="center_horizontal|bottom"
+            android:layout_gravity="bottom"
+            android:gravity="center"
             android:orientation="horizontal">
 
         </LinearLayout>
@@ -35,9 +36,11 @@
         android:layout_gravity="center"
         android:layout_margin="20sp"
         android:layout_weight="0.07"
+        android:background="@drawable/background_rounded_corners"
         android:gravity="center"
         android:onClick="start"
-        android:text="開始" />
+        android:text="開始"
+        android:textColor="#FFFFFF" />
 
 
 </LinearLayout>

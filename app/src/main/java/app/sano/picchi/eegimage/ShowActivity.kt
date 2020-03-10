@@ -22,12 +22,12 @@ class ShowActivity : AppCompatActivity() {
 
     //realm型の変数を宣言
     lateinit var realm: Realm
-    lateinit var bitmap: Bitmap
 
     var second = 15
     var count = 0
 
-    var timer :CountDownTimer = object :CountDownTimer(15000,1000){
+    //あとで15秒に修正
+    var timer :CountDownTimer = object :CountDownTimer(3000,1000){
 
         override fun onFinish(){
             second = 15
@@ -40,11 +40,12 @@ class ShowActivity : AppCompatActivity() {
             Log.d("memo",second.toString())
             countText.text = second.toString()
         }
-
     }
 
 
     fun repertIfNeeded(){
+
+        //枚数分にする
         if (count <= 3) {
             //写真を変える処理をかく
             timer.cancel()
@@ -59,43 +60,40 @@ class ShowActivity : AppCompatActivity() {
             startActivity(intent)
             timer.cancel()
 
+            Log.d("Test",count.toString())
+
+
         }
 
-
-
+        //listから持ってくる
+        when(count){
+            0 -> showImage.setImageURI(uriList[0])
+            1 -> showImage.setImageURI(uriList[1])
+            2 -> showImage.setImageURI(uriList[2])
+            3 -> showImage.setImageURI(uriList[3])
+            4 -> showImage.setImageURI(uriList[4])
+        }
 
 
     }
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        /*//memoから画像をとってくる
-        val memo
-                = realm.where(Memo::class.java).equalTo(
-            "updateDate",
-            this.intent.getStringExtra("updateDate")
-        ).findFirst()*/
+        //チュートリアルの表示
+        showForcibly(this)
+
+        //realmに脳波数値と画像を保存する
+
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show)
         timer.start()
 
         //選択した画像を表示する
-        //bitmap = BitmapFactory.decodeByteArray(memo?.bitmap, 0, memo?.bitmap?.size!!)
-        //showImage.setImageBitmap(bitmap)
-
-        //チュートリアルの表示
-        showForcibly(this)
-
-
 
     }
-
-
-
-
-
 
 
     override fun onDestroy() {
@@ -104,8 +102,5 @@ class ShowActivity : AppCompatActivity() {
         //realmを閉じる
         realm.close()
     }
-
-
-
 
 }
