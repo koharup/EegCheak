@@ -46,7 +46,7 @@ class ShowActivity : AppCompatActivity() {
     fun repertIfNeeded(){
 
         //枚数分にする
-        if (count <= 3) {
+        if (count <= 4) {
             //写真を変える処理をかく
             timer.cancel()
             timer.start()
@@ -55,7 +55,9 @@ class ShowActivity : AppCompatActivity() {
 
             count += 1
 
-        }else if (count == 4){
+
+
+        }else if (count == 5){
             val intent = Intent(this,ResultActivity::class.java)
             startActivity(intent)
             timer.cancel()
@@ -67,11 +69,14 @@ class ShowActivity : AppCompatActivity() {
 
         //listから持ってくる
         when(count){
-            0 -> showImage.setImageURI(uriList[0])
-            1 -> showImage.setImageURI(uriList[1])
-            2 -> showImage.setImageURI(uriList[2])
-            3 -> showImage.setImageURI(uriList[3])
-            4 -> showImage.setImageURI(uriList[4])
+            0 -> showImage.setImageResource(R.drawable.flower_w_co3)
+            1 -> showImage.setImageURI(uriList[0])
+            2 -> showImage.setImageURI(uriList[1])
+            3 -> showImage.setImageURI(uriList[2])
+            4 -> showImage.setImageURI(uriList[3])
+            5 -> showImage.setImageURI(uriList[4])
+
+
         }
 
 
@@ -81,8 +86,6 @@ class ShowActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        //チュートリアルの表示
-        showForcibly(this)
 
         //realmに脳波数値と画像を保存する
 
@@ -91,7 +94,8 @@ class ShowActivity : AppCompatActivity() {
         setContentView(R.layout.activity_show)
         timer.start()
 
-        //選択した画像を表示する
+        showImage.setImageResource(R.drawable.flower_w_co3)
+
 
     }
 
