@@ -23,7 +23,7 @@ class TutorialActivity : WelcomeActivity() {
         fun showForcibly(activity: Activity) {
             WelcomeHelper(activity, TutorialActivity::class.java).forceShow()
         }
-    }
+    }//
 
     /**
      * 表示するチュートリアル画面を定義する
@@ -31,10 +31,10 @@ class TutorialActivity : WelcomeActivity() {
     override fun configuration(): WelcomeConfiguration {
         return WelcomeConfiguration.Builder(this)
             .defaultBackgroundColor(R.color.colorBack)
-            .page(TitlePage(R.drawable.i4, "Museを接続してください"))
+            .page(TitlePage(R.drawable.musephoto, "このアプリは脳波計museを使用します"))
 
             .page(BasicPage(R.drawable.flower,
-                "呼吸に集中してください",
+                "museを接続してください",
                 "始めます")
                 .background(R.color.colorBack))
             .swipeToDismiss(false)

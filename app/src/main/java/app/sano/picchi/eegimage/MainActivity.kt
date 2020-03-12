@@ -56,6 +56,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        showIfNeeded(this,savedInstanceState)
+
 
         scale = resources.displayMetrics.density
 
